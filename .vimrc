@@ -38,3 +38,8 @@ highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
 inoremap jk <ESC>
+
+command RmSpaces :%s/\s\+$/
+
+map <C-H> :execute "tabmove" tabpagenr() - 2 <CR>
+map <C-J> :execute "tabmove" tabpagenr() <CR>
