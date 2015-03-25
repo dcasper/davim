@@ -80,9 +80,14 @@ export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-plugins=(git osx ruby)
+plugins=(vi-mode git rails ruby brew ant rake history-substring-search)
 
-bindkey -v
+source $ZSH/oh-my-zsh.sh
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+alias be="bundle exec"
 
 alias rake="noglob rake"
 alias bundle="noglob bundle"
@@ -97,13 +102,6 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH="$PATH:/usr/local/sbin"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey "^[[A" up-line-or-beginning-search # Up
-bindkey "^[[B" down-line-or-beginning-search # Down
 
 # Add vertical split enabled GNU screen
 alias vscreen="/usr/local/Cellar/screen/HEAD/bin/screen"
