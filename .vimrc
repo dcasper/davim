@@ -46,3 +46,8 @@ map <C-L> :execute "tabmove" tabpagenr() <CR>
 
 " Set Shell to use bash instead of zsh
 set shell=zsh
+
+nnoremap <silent> <Leader>= :12winc +<CR>
+nnoremap <silent> <Leader>- :12winc -<CR>
+nnoremap <silent> <Leader>, :20winc <<CR>
+nnoremap <silent> <Leader>. :20winc ><CR>
