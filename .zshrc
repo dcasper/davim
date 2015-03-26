@@ -41,12 +41,6 @@ COMPLETION_WAITING_DOTS="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -82,8 +76,6 @@ export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 
 plugins=(vi-mode git rails ruby brew ant rake history-substring-search)
 
-source $ZSH/oh-my-zsh.sh
-
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
@@ -98,10 +90,10 @@ alias gits="git status"
 alias gitd="git diff"
 alias gitdn="git diff --name-only"
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-export PATH="$PATH:/usr/local/sbin"
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+alias k="cd .."
+alias kk="cd ../.."
+alias kkk="cd ../../.."
+alias kkkk="cd ../../../.."
 
 # Add vertical split enabled GNU screen
 alias vscreen="/usr/local/Cellar/screen/HEAD/bin/screen"

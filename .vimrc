@@ -42,4 +42,7 @@ inoremap jk <ESC>
 command RmSpaces :%s/\s\+$/
 
 map <C-H> :execute "tabmove" tabpagenr() - 2 <CR>
-map <C-J> :execute "tabmove" tabpagenr() <CR>
+map <C-L> :execute "tabmove" tabpagenr() <CR>
+
+" Set Shell to use bash instead of zsh
+set shell=zsh

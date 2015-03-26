@@ -1,0 +1,3 @@
+shell -${SHELL}
+
+scrollback 10000
