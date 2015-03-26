@@ -74,10 +74,14 @@ export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-plugins=(vi-mode git rails ruby brew ant rake history-substring-search)
+plugins=(git rails ruby brew ant rake history-substring-search)
 
+bindkey -v
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+bindkey '^[OA' up-line-or-search
+bindkey '^[OB' down-line-or-search
+
 
 alias be="bundle exec"
 
