@@ -93,6 +93,8 @@ alias rctl="rabbitmqctl"
 alias gits="git status"
 alias gitd="git diff"
 alias gitdn="git diff --name-only"
+alias gitc="git commit"
+alias gitl="git log"
 
 alias k="cd .."
 alias kk="cd ../.."
@@ -101,3 +103,5 @@ alias kkkk="cd ../../../.."
 
 # Add vertical split enabled GNU screen
 alias vscreen="/usr/local/Cellar/screen/HEAD/bin/screen"
+
+rgrep() { grep -r "$*" . }

@@ -51,3 +51,5 @@ nnoremap <silent> <Leader>= :12winc +<CR>
 nnoremap <silent> <Leader>- :12winc -<CR>
 nnoremap <silent> <Leader>, :20winc <<CR>
 nnoremap <silent> <Leader>. :20winc ><CR>
+
+map <C-S> :call RunCurrentSpecFile()<CR>
