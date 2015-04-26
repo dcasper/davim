@@ -75,10 +75,14 @@ export PATH="$PATH:/usr/local/share/npm/bin"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-plugins=(vi-mode git rails ruby brew ant rake history-substring-search)
+plugins=(git rails ruby brew ant rake history-substring-search)
 
+bindkey -v
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+bindkey '^[OA' up-line-or-search
+bindkey '^[OB' down-line-or-search
+
 
 alias be="bundle exec"
 
@@ -90,6 +94,8 @@ alias rctl="rabbitmqctl"
 alias gits="git status"
 alias gitd="git diff"
 alias gitdn="git diff --name-only"
+alias gitc="git commit"
+alias gitl="git log"
 
 alias k="cd .."
 alias kk="cd ../.."
@@ -98,3 +104,5 @@ alias kkkk="cd ../../../.."
 
 # Add vertical split enabled GNU screen
 alias vscreen="/usr/local/Cellar/screen/HEAD/bin/screen"
+
+rgrep() { grep -r "$*" . }
