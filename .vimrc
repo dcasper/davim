@@ -53,3 +53,7 @@ nnoremap <silent> <Leader>, :20winc <<CR>
 nnoremap <silent> <Leader>. :20winc ><CR>
 
 map <C-S> :call RunCurrentSpecFile()<CR>
+
+nmap <space> zz
+
+colorscheme jellybeans
