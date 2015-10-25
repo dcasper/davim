@@ -55,5 +55,8 @@ nnoremap <silent> <Leader>. :20winc ><CR>
 map <C-S> :call RunCurrentSpecFile()<CR>
 
 nmap <space> zz
-
 colorscheme jellybeans
+highlight LineNr ctermfg=79
+
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/

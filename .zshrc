@@ -104,4 +104,4 @@ alias kkkk="cd ../../../.."
 # Add vertical split enabled GNU screen
 alias vscreen="/usr/local/Cellar/screen/HEAD/bin/screen"
 
-rgrep() { grep -r "$*" . }
+rgrep() { grep -r --exclude-dir="log" "$*" . }
