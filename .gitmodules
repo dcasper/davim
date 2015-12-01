@@ -4,6 +4,9 @@
 [submodule ".vim/bundle/vim-javascript"]
 	path = .vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
+[submodule ".vim/bundle/vim-rspec"]
+	path = .vim/bundle/vim-rspec
+	url = https://github.com/thoughtbot/vim-rspec.git
 [submodule "mintty-colors-solarized"]
 	path = mintty-colors-solarized
 	url = https://github.com/mavnn/mintty-colors-solarized.git
