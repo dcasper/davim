@@ -2,7 +2,7 @@
 
 # Aptitude Installs
 apt-get update
-apt-get install -y git screen zsh
+apt-get install -y git screen zsh npm
 
 # Get RVM hooked up and on its feet
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
@@ -25,3 +25,6 @@ ln -s davim/.screenrc .screenrc
 
 # Heroku Toolbelt
 wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+
+npm install --global gulp
+ln -s /usr/bin/nodejs /usr/bin/node
