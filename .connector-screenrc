@@ -1,0 +1,11 @@
+screen -t "connector-console"
+stuff ". ~/.screen_setup.sh connector console"
+
+screen -t "connector-edit"
+stuff ". ~/.screen_setup.sh connector"
+
+screen -t "connector-edit"
+stuff ". ~/.screen_setup.sh connector"
+
+screen -t "connector-scratch"
+stuff ". ~/.screen_setup.sh connector"

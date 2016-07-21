@@ -10,3 +10,6 @@
 [submodule "mintty-colors-solarized"]
 	path = mintty-colors-solarized
 	url = https://github.com/mavnn/mintty-colors-solarized.git
+[submodule ".vim/bundle/nerdtree"]
+	path = .vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git

@@ -1,0 +1,23 @@
+screen -t "portal-server"
+stuff ". ~/.screen_setup.sh portal server"
+
+screen -t "api-server"
+stuff ". ~/.screen_setup.sh api server"
+
+screen -t "portal-edit"
+stuff ". ~/.screen_setup.sh portal"
+
+screen -t "api-edit"
+stuff ". ~/.screen_setup.sh api"
+
+screen -t "portal-console"
+stuff ". ~/.screen_setup.sh portal console"
+
+screen -t "api-console"
+stuff ". ~/.screen_setup.sh api console "
+
+screen -t "portal-scratch"
+stuff ". ~/.screen_setup.sh portal"
+
+screen -t "api-scratch"
+stuff ". ~/.screen_setup.sh api"

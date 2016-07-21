@@ -102,7 +102,24 @@ alias kk="cd ../.."
 alias kkk="cd ../../.."
 alias kkkk="cd ../../../.."
 
+new_screen="/usr/local/Cellar/screen/HEAD/bin/screen"
 # Add vertical split enabled GNU screen
-alias vscreen="/usr/local/Cellar/screen/HEAD/bin/screen"
+alias vscreen=$new_screen
 
-rgrep() { grep -r --exclude-dir="log" "$*" . }
+
+# Add portal screen setup alias
+alias pscr="$new_screen + -c ~/.portal-screenrc"
+alias cscr="$new_screen -c ~/.connector-screenrc"
+
+function alk {
+  e=${E:-production}
+  s=$(aws --region us-east-1 opsworks describe-stacks | jq -r ".Stacks[] | select(.Name==\"$1-$e\") | .StackId")
+  if [ -z ${2+x} ]; then
+    c=".Instances[] | .Hostname + \"\t\" + .PrivateIp"
+  else
+    c=".Instances[] | select(.Hostname==\"$2\") | .PrivateIp"
+  fi
+  aws --region us-east-1 opsworks describe-instances --stack-id $s | jq -r "$c"
+}
+
+rgrep() { grep -r --exclude-dir="**/fixtures" --exclude-dir="tmp" --exclude-dir="log" "$*" . }
