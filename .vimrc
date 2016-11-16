@@ -67,3 +67,13 @@ let &t_EI.="\e[1 q"
 let &t_te.="\e[0 q"
 
 let g:jsx_ext_required = 0
+
+let g:rails_projections = {
+      \ "app/services/*.rb": {
+      \   "command": "services",
+      \   "test": "spec/services/{}_spec.rb"
+      \ },
+      \ "app/drivers/*_driver.rb": {
+      \   "command": "drivers",
+      \   "test": "spec/drivers/{}_spec.rb"
+      \ }}
