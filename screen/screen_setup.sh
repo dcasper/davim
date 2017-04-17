@@ -7,7 +7,7 @@ if [ $project = "api" ]; then
 elif [ $project = "portal" ]; then
   dir=$(greadlink -f ~/Development/portal)
 elif [ $project = "connector" ]; then
-  dir=$(greadlink -f ~/Development/mdm-connector/mdm-connector-core)
+  dir=$(greadlink -f ~/Development/emm-connector)
 else
   exit 1
 fi

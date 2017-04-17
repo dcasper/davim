@@ -41,8 +41,8 @@ inoremap jk <ESC>
 
 command RmSpaces :%s/\s\+$/
 
-map <C-H> :execute "tabmove" tabpagenr() - 2 <CR>
-map <C-L> :execute "tabmove" tabpagenr() <CR>
+map <C-H> :tabm -1<CR>
+map <C-L> :tabm +1<CR>
 
 " Set Shell to use bash instead of zsh
 set shell=zsh
@@ -66,6 +66,10 @@ let &t_SI.="\e[5 q"
 let &t_EI.="\e[1 q"
 let &t_te.="\e[0 q"
 
+map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
+map ,t :tabe <C-R>=expand("%:p:h") . "/" <CR>
+map ,s :split <C-R>=expand("%:p:h") . "/" <CR>
+
 let g:jsx_ext_required = 0
 
 let g:rails_projections = {
@@ -76,4 +80,13 @@ let g:rails_projections = {
       \ "app/drivers/*_driver.rb": {
       \   "command": "drivers",
       \   "test": "spec/drivers/{}_spec.rb"
+      \ },
+      \ "app/assets/javascripts/components/*.jsx": {
+      \   "command": "jcomp",
+      \ },
+      \ "app/assets/javascripts/stores/*_store.jsx": {
+      \   "command": "jstore",
+      \ },
+      \ "app/assets/javascripts/actions/*_actions.jsx": {
+      \   "command": "jaction",
       \ }}

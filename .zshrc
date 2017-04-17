@@ -50,6 +50,9 @@ export PATH="$PATH:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 export PATH="$PATH:/usr/local/share/npm/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -112,7 +115,6 @@ alias pscr="$new_screen -c ~/.portal-screenrc"
 alias cscr="$new_screen -c ~/.connector-screenrc"
 
 function alk {
-  e=${E:-production}
   s=$(aws --region us-east-1 opsworks describe-stacks | jq -r ".Stacks[] | select(.Name==\"$1\") | .StackId")
   if [ -z ${2+x} ]; then
     c=".Instances[] | .Hostname + \"\t\" + .PrivateIp"
@@ -123,10 +125,16 @@ function alk {
 }
 
 function dterm {
-  ips=$(alk docker-cloud | grep node | awk '{print $2}')
+  ips=$(alk docker-cloud | grep node | awk '{print $NF}')
   res=$(pssh -H $ips "sudo su -c \"docker ps | grep $1\"")
   docker_ip=$(echo $res | grep SUCCESS | awk '{print $NF}')
   ssh -t $docker_ip "sudo su -c \"d_name=\\\$(docker ps | grep $1 | awk '{print \\\$NF}'); echo \\\$d_name; docker exec -it \\\$d_name bash\""
+}
+
+PROD_MAINT_HOST=`alk api-production maint1`
+
+function maintconsole { 
+  ssh -tt -i ~/.ssh/id_rsa.pub $PROD_MAINT_HOST 'sudo -u deploy sh -c "cd /srv/www/app/current ; RAILS_ENV=production bundle exec rails console"'
 }
 
 rgrep() { grep -r --exclude-dir="**/fixtures" --exclude-dir="tmp" --exclude-dir="log" "$*" . }
