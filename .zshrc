@@ -115,8 +115,8 @@ alias vscreen=$new_screen
 
 
 # Add portal screen setup alias
-alias pscr="$new_screen -c ~/.portal-screenrc"
-alias cscr="$new_screen -c ~/.connector-screenrc"
+alias pscr="$new_screen -S cloud -c ~/.portal-screenrc"
+alias cscr="$new_screen -S connector -c ~/.connector-screenrc"
 
 if type "aws" > /dev/null; then
 
