@@ -46,6 +46,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
@@ -109,7 +110,7 @@ alias kkk="cd ../../.."
 alias kkkk="cd ../../../.."
 
 new_screen="/usr/local/Cellar/screen/HEAD/bin/screen"
-# Add vertical split enabled GNU screen
+# Add vertical split enabled GNU screen for OSX
 alias vscreen=$new_screen
 
 
@@ -117,27 +118,31 @@ alias vscreen=$new_screen
 alias pscr="$new_screen -c ~/.portal-screenrc"
 alias cscr="$new_screen -c ~/.connector-screenrc"
 
-function alk {
-  s=$(aws --region us-east-1 opsworks describe-stacks | jq -r ".Stacks[] | select(.Name==\"$1\") | .StackId")
-  if [ -z ${2+x} ]; then
-    c=".Instances[] | .Hostname + \"\t\" + .PrivateIp"
-  else
-    c=".Instances[] | select(.Hostname==\"$2\") | .PrivateIp"
-  fi
-  aws --region us-east-1 opsworks describe-instances --stack-id $s | jq -r "$c"
-}
+if type "aws" > /dev/null; then
 
-function dterm {
-  ips=$(alk docker-cloud | grep node | awk '{print $NF}')
-  res=$(pssh -H $ips "sudo su -c \"docker ps | grep $1\"")
-  docker_ip=$(echo $res | grep SUCCESS | awk '{print $NF}')
-  ssh -t $docker_ip "sudo su -c \"d_name=\\\$(docker ps | grep $1 | awk '{print \\\$NF}'); echo \\\$d_name; docker exec -it \\\$d_name bash\""
-}
+  function alk {
+    s=$(aws --region us-east-1 opsworks describe-stacks | jq -r ".Stacks[] | select(.Name==\"$1\") | .StackId")
+    if [ -z ${2+x} ]; then
+      c=".Instances[] | .Hostname + \"\t\" + .PrivateIp"
+    else
+      c=".Instances[] | select(.Hostname==\"$2\") | .PrivateIp"
+    fi
+    aws --region us-east-1 opsworks describe-instances --stack-id $s | jq -r "$c"
+  }
 
-PROD_MAINT_HOST=`alk api-production maint1`
+  function dterm {
+    ips=$(alk docker-cloud | grep node | awk '{print $NF}')
+    res=$(pssh -H $ips "sudo su -c \"docker ps | grep $1\"")
+    docker_ip=$(echo $res | grep SUCCESS | awk '{print $NF}')
+    ssh -t $docker_ip "sudo su -c \"d_name=\\\$(docker ps | grep $1 | awk '{print \\\$NF}'); echo \\\$d_name; docker exec -it \\\$d_name bash\""
+  }
 
-function maintconsole { 
-  ssh -tt -i ~/.ssh/id_rsa.pub $PROD_MAINT_HOST 'sudo -u deploy sh -c "cd /srv/www/app/current ; RAILS_ENV=production bundle exec rails console"'
-}
+  PROD_MAINT_HOST=`alk api-production maint1`
+
+  function maintconsole {
+    ssh -tt -i ~/.ssh/id_rsa.pub $PROD_MAINT_HOST 'sudo -u deploy sh -c "cd /srv/www/app/current ; RAILS_ENV=production bundle exec rails console"'
+  }
+
+fi
 
 rgrep() { grep -r --exclude-dir="**/fixtures" --exclude-dir="tmp" --exclude-dir="log" "$*" . }
