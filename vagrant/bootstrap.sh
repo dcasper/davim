@@ -7,10 +7,9 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | \
 apt-get update
 
 # Aptitude Installs
-apt-get install -y git screen zsh jq awscli \
+apt-get install -y git screen zsh jq npm \
  postgresql-9.6 libpq-dev \
- libssl-dev libreadline-dev zlib1g-dev \
- npm
+ libssl-dev libreadline-dev zlib1g-dev
 
 # Postgres Setup
 su postgres -c "createuser vagrant"
