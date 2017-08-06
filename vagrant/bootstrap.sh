@@ -12,7 +12,7 @@ apt-get install -y git screen zsh jq npm \
  libssl-dev libreadline-dev zlib1g-dev
 
 # Postgres Setup
-su postgres -c "createuser vagrant"
+su postgres -c "createuser vagrant -dr"
 su postgres -c "createdb vagrant"
 
 # Oh My Zsh
