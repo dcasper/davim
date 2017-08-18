@@ -1,3 +1,5 @@
+source $HOME/.screenrc
+
 screen -t "connector-console"
 stuff ". ~/.screen_setup.sh connector console"
 

@@ -1,3 +1,5 @@
+source $HOME/.screenrc
+
 screen -t "portal-server"
 stuff ". ~/.screen_setup.sh portal server"
 
