@@ -1,4 +1,4 @@
 shell -${SHELL}
 term screen-256color
 
-scrollback 10000
+defscrollback 10000

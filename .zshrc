@@ -145,4 +145,4 @@ if type "aws" > /dev/null; then
 
 fi
 
-rgrep() { grep -r --exclude-dir="**/fixtures" --exclude-dir="tmp" --exclude-dir="log" "$*" . }
+rgrep() { grep -r --exclude-dir="**/fixtures" --exclude-dir="tmp" --exclude-dir="log" --exclude-dir="node_modules" "$*" . }
