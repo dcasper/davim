@@ -122,5 +122,7 @@ rgrep() { grep -r --exclude-dir="**/fixtures" \
                   --exclude-dir="log" \
                   --exclude-dir="node_modules" \
                   --exclude-dir="public" \
+                  --exclude-dir="pgdata" \
+                  --exclude-dir="wheelhouse" \
                   "$*" .
 }

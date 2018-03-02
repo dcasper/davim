@@ -90,3 +90,6 @@ let g:rails_projections = {
       \ "app/assets/javascripts/actions/*_actions.jsx": {
       \   "command": "jaction",
       \ }}
+
+let g:ctrlp_cmd = 'CtrlPMixed'
+let g:ctrlp_custom_ignore = 'node_modules'
