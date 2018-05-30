@@ -131,3 +131,10 @@ rgrep() { grep -r --color=always\
   --exclude-dir="temp" \
   "$*" .
 }
+
+if [ -h ~/.zshrc ]; then
+  config_dir=~/$(dirname $(readlink ~/.zshrc))
+else
+  config_dir=~
+fi
+for file in $config_dir/.proprietary/*.zshrc; . $file
