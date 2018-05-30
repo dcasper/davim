@@ -52,8 +52,6 @@ nnoremap <silent> <Leader>- :12winc -<CR>
 nnoremap <silent> <Leader>, :20winc <<CR>
 nnoremap <silent> <Leader>. :20winc ><CR>
 
-map <C-S> :call RunCurrentSpecFile()<CR>
-
 nmap <space> zz
 colorscheme jellybeans
 highlight LineNr ctermfg=79
@@ -93,3 +91,5 @@ let g:rails_projections = {
 
 let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_custom_ignore = 'node_modules'
+
+map <C-S> :Ag<space>

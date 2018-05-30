@@ -107,6 +107,8 @@ alias gitd="git diff"
 alias gitdn="git diff --name-only"
 alias gitc="git commit"
 alias gitl="git log"
+alias gitreb="git commit -am 'fix'; git rebase -i HEAD~1"
+alias gitfix="git add -u; git commit --amend --no-edit"
 
 alias k="cd .."
 alias kk="cd ../.."
@@ -117,12 +119,15 @@ new_screen="/usr/local/Cellar/screen/HEAD/bin/screen"
 # Add vertical split enabled GNU screen for OSX
 alias vscreen=$new_screen
 
-rgrep() { grep -r --exclude-dir="**/fixtures" \
-                  --exclude-dir="tmp" \
-                  --exclude-dir="log" \
-                  --exclude-dir="node_modules" \
-                  --exclude-dir="public" \
-                  --exclude-dir="pgdata" \
-                  --exclude-dir="wheelhouse" \
-                  "$*" .
+rgrep() { grep -r --color=always\
+  --exclude-dir="**/fixtures" \
+  --exclude-dir="tmp" \
+  --exclude-dir="log" \
+  --exclude-dir="node_modules" \
+  --exclude-dir="public" \
+  --exclude-dir="pgdata" \
+  --exclude-dir="wheelhouse" \
+  --exclude-dir="assets" \
+  --exclude-dir="temp" \
+  "$*" .
 }
