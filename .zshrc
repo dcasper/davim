@@ -109,6 +109,9 @@ alias gitc="git commit"
 alias gitl="git log"
 alias gitreb="git commit -am 'fix'; git rebase -i HEAD~1"
 alias gitfix="git add -u; git commit --amend --no-edit"
+alias gitprim='git checkout $primary'
+alias gitmas="git checkout master"
+alias gitsec='git checkout $secondary'
 
 alias k="cd .."
 alias kk="cd ../.."
