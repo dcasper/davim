@@ -14,6 +14,8 @@ set nu
 set wildmode=longest,list,full
 set wildmenu
 
+set backspace=indent,eol,start
+
 nnoremap tl  :tabnext<CR>
 nnoremap th  :tabprev<CR>
 
@@ -93,3 +95,6 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_custom_ignore = 'node_modules'
 
 map <C-S> :Ag<space>
+
+autocmd BufWritePre *.py silent! execute ':Black'
+"autocmd BufWritePre *.js silent! execute ':Prettier'
