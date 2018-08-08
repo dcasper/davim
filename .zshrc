@@ -122,17 +122,26 @@ new_screen="/usr/local/Cellar/screen/HEAD/bin/screen"
 # Add vertical split enabled GNU screen for OSX
 alias vscreen=$new_screen
 
-rgrep() { grep -r --color=always\
-  --exclude-dir="**/fixtures" \
-  --exclude-dir="tmp" \
-  --exclude-dir="log" \
-  --exclude-dir="node_modules" \
-  --exclude-dir="public" \
-  --exclude-dir="pgdata" \
-  --exclude-dir="wheelhouse" \
-  --exclude-dir="assets" \
-  --exclude-dir="temp" \
-  "$*" .
+rgrep() {
+  if [ -h $RGREP_COLOR ]; then
+    RGREP_COLOR="always"
+  fi
+  grep -r --color=$RGREP_COLOR\
+    --exclude-dir="**/fixtures" \
+    --exclude-dir="tmp" \
+    --exclude-dir="log" \
+    --exclude-dir="node_modules" \
+    --exclude-dir="public" \
+    --exclude-dir="pgdata" \
+    --exclude-dir="wheelhouse" \
+    --exclude-dir="assets" \
+    --exclude-dir="temp" \
+    "$*" .
+}
+
+vigrep() {
+  RGREP_COLOR="never"
+  rgrep "$*" | vim -
 }
 
 if [ -h ~/.zshrc ]; then
