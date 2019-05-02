@@ -42,6 +42,14 @@ COMPLETION_WAITING_DOTS="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+if [ -h ~/.zshrc ]; then
+  config_dir=$(dirname $(readlink ~/.zshrc))
+else
+  config_dir=~
+fi
+# Run any zshrc files *before* sourcing oh-my-zsh to allow configuring oh-my
+for file in $config_dir/.proprietary/*.zshrc.pre; . $file
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -144,9 +152,4 @@ vigrep() {
   rgrep "$*" | vim -
 }
 
-if [ -h ~/.zshrc ]; then
-  config_dir=~/$(dirname $(readlink ~/.zshrc))
-else
-  config_dir=~
-fi
 for file in $config_dir/.proprietary/*.zshrc; . $file
