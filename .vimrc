@@ -20,6 +20,7 @@ set backspace=indent,eol,start
 nnoremap tl  :tabnext<CR>
 nnoremap th  :tabprev<CR>
 
+"Random test comment
 set omnifunc=syntaxcomplete#Complete
 
 "Fancy IDE style completion options
