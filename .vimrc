@@ -16,6 +16,7 @@ set wildmenu
 
 set backspace=indent,eol,start
 
+"Tab Navigation
 nnoremap tl  :tabnext<CR>
 nnoremap th  :tabprev<CR>
 
