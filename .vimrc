@@ -17,8 +17,8 @@ set wildmenu
 set backspace=indent,eol,start
 
 "Tab Navigation
-nnoremap tl  :tabnext<CR>
-nnoremap th  :tabprev<CR>
+nnoremap tl  gt
+nnoremap th  gT
 
 "Random test comment
 set omnifunc=syntaxcomplete#Complete
