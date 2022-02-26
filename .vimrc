@@ -1,4 +1,25 @@
-execute pathogen#infect()
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin()
+
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install --frozen-lockfile --production',
+  \ 'for': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+
+Plug 'nanotech/jellybeans.vim'
+
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'leafgarland/typescript-vim'
+Plug 'pangloss/vim-javascript'
+
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
+
+call plug#end()
 
 syntax on
 filetype plugin indent on
@@ -98,5 +119,7 @@ let g:ctrlp_custom_ignore = 'node_modules'
 
 map <C-S> :Ag<space>
 
-autocmd BufWritePre *.py silent! execute ':Black'
+"autocmd BufWritePre *.py silent! execute ':Black'
 "autocmd BufWritePre *.js silent! execute ':Prettier'
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
