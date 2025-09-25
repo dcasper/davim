@@ -1,0 +1,97 @@
+{
+  :main [
+    {:des "Caps Lock to toggle mouse layer"
+     :rules [
+       [
+        :caps_lock
+        ["mouse" 1]
+        nil
+        {
+         :afterup [["mouse" 0]]
+         ;;:delayed { :canceled ["mouse" 0] :invoked ["mouse" 0] }
+        }
+       ]
+       ;; Mouse layer keys
+       [:a { :mkey { :x -1546 }} [["mouse" 1] ["slow" 1]]]
+       [:w { :mkey { :y -1546 }} [["mouse" 1] ["slow" 1]]]
+       [:s { :mkey { :y 1546 }} [["mouse" 1] ["slow" 1]]]
+       [:d { :mkey { :x 1546 }} [["mouse" 1] ["slow" 1]]]
+
+       [:a { :mkey { :x -3096}} ["mouse" 1]]
+       [:w { :mkey { :y -3096 }} ["mouse" 1]]
+       [:s { :mkey { :y 3096 }} ["mouse" 1]]
+       [:d { :mkey { :x 3096 }} ["mouse" 1]]
+
+       [:q { :pkey :button1 } ["mouse" 1]]
+       [:e { :pkey :button2 } ["mouse" 1]]
+
+       [:spacebar ["slow" 1] ["mouse" 1] { :afterup ["slow" 0] }]
+
+       [:h { :mkey { :hwheel 32 }} [["mouse" 1] ["slow" 1]]]
+       [:j { :mkey { :vwheel 32 }} [["mouse" 1] ["slow" 1]]]
+       [:k { :mkey { :vwheel -32 }} [["mouse" 1] ["slow" 1]]]
+       [:l { :mkey { :hwheel -32 }} [["mouse" 1] ["slow" 1]]]
+
+       [:h { :mkey { :hwheel 48 }} ["mouse" 1]]
+       [:j { :mkey { :vwheel 48 }} ["mouse" 1]]
+       [:k { :mkey { :vwheel -48 }} ["mouse" 1]]
+       [:l { :mkey { :hwheel -48 }} ["mouse" 1]]
+     ]
+    },
+    {:des "Double-tap Shift to toggle arrow layer"
+     :rules [
+       [
+        :right_shift
+        ["arrow" 1]
+        ["shift_tap" 1]
+        {
+         :afterup [["arrow" 0]]
+        }
+       ]
+
+       [
+        :right_shift
+        [["shift_tap" 1] :right_shift]
+        ["shift_tap" 0]
+        {
+         :delayed { :canceled ["shift_tap" 0] :invoked ["shift_tap" 0] }
+         :params {:alone 250 :delay 500 }
+        }
+       ]
+
+       [
+        :left_shift
+        ["arrow" 1]
+        ["shift_tap" 1]
+        {
+         :afterup [["arrow" 0]]
+        }
+       ]
+
+       [
+        :left_shift
+        [["shift_tap" 1] :left_shift]
+        ["shift_tap" 0]
+        {
+         :delayed { :canceled ["shift_tap" 0] :invoked ["shift_tap" 0] }
+         :params {:alone 250 :delay 500 }
+        }
+       ]
+
+       ;; Arrow layer keys
+       [:h :left_arrow ["arrow" 1]]
+       [:j :down_arrow ["arrow" 1]]
+       [:k :up_arrow ["arrow" 1]]
+       [:l :right_arrow ["arrow" 1]]
+
+       [:b :!Oleft_arrow ["arrow" 1]]
+       [:w [:!Oright_arrow :right_arrow] ["arrow" 1]]
+       [:e :!Oright_arrow ["arrow" 1]]
+
+       [:6 :!Cleft_arrow ["arrow" 1]]
+       [:4 :!Cright_arrow ["arrow" 1]]
+       
+     ]
+    }
+  ]
+}
