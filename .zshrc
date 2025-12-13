@@ -69,6 +69,7 @@ NVM_SETUP="/usr/local/opt/nvm/nvm.sh"
 if [[ -a $NVM_SETUP ]]; then
   . $NVM_SETUP
 fi
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -186,3 +187,8 @@ fi
 
 
 export STM32_PRG_PATH=/Applications/STMicroelectronics/STM32Cube/STM32CubeProgrammer/STM32CubeProgrammer.app/Contents/MacOs/bin
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH="$HOME/.local/bin:$PATH"
+
+eval "$(mise activate zsh)"
+export PATH="$HOME/.local/bin:$PATH"
