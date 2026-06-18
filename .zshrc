@@ -190,5 +190,6 @@ export STM32_PRG_PATH=/Applications/STMicroelectronics/STM32Cube/STM32CubeProgra
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export PATH="$HOME/.local/bin:$PATH"
 
-eval "$(mise activate zsh)"
-export PATH="$HOME/.local/bin:$PATH"
+command -v mise >/dev/null && eval "$(mise activate zsh)"
+command -v howdoi >/dev/null && eval "$(howdoi shell-init zsh)"
+command -v go >/dev/null && export PATH="$(go env GOPATH)/bin:$PATH"
