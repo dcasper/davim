@@ -8,4 +8,5 @@ ln -s $davim/.vimrc .vimrc
 ln -s $davim/.screenrc .screenrc
 ln -s $davim/.zshenv .zshenv
 ln -s $davim/.zshrc .zshrc
+ln -s $davim/.tmux.conf .tmux.conf
 ln -s $davim/karabiner.edn ~/.config/karabiner/karabiner.edn
