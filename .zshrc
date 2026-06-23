@@ -165,7 +165,6 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init --path)"
 fi
 
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/usr/local/Caskroom/miniforge/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -193,3 +192,5 @@ export PATH="$HOME/.local/bin:$PATH"
 command -v mise >/dev/null && eval "$(mise activate zsh)"
 command -v howdoi >/dev/null && eval "$(howdoi shell-init zsh)"
 command -v go >/dev/null && export PATH="$(go env GOPATH)/bin:$PATH"
+
+export PATH="$HOME/.local/bin:$PATH"
