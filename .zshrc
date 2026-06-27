@@ -194,3 +194,6 @@ command -v howdoi >/dev/null && eval "$(howdoi shell-init zsh)"
 command -v go >/dev/null && export PATH="$(go env GOPATH)/bin:$PATH"
 
 export PATH="$HOME/.local/bin:$PATH"
+
+# opencode
+export PATH=/home/david/.opencode/bin:$PATH
