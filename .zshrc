@@ -197,3 +197,6 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # opencode
 export PATH=/home/david/.opencode/bin:$PATH
+
+export VISUAL="vim"
+export EDITOR="vim"
