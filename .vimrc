@@ -17,8 +17,11 @@ Plug 'leafgarland/typescript-vim'
 Plug 'pangloss/vim-javascript'
 
 Plug 'godlygeek/tabular'
-Plug 'preservim/vim-markdown'
+"Plug 'preservim/vim-markdown'
+let g:markdown_folding = 1
 Plug 'psf/black'
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 call plug#end()
 
@@ -60,9 +63,6 @@ let g:rubycomplete_classes_in_global=1
 
 inoremap <C-@> <C-x><C-o>
 
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
-
 inoremap jk <ESC>
 
 command RmSpaces :%s/\s\+$/
@@ -81,9 +81,6 @@ nnoremap <silent> <Leader>. :20winc ><CR>
 nmap <space> zz
 colorscheme jellybeans
 highlight LineNr ctermfg=79
-
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
 
 let &t_ti.="\e[1 q"
 let &t_SI.="\e[5 q"
