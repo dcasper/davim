@@ -24,6 +24,7 @@ let g:markdown_folding = 1
 Plug 'psf/black'
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'rickhowe/diffchar.vim'
 
 call plug#end()
 
@@ -87,6 +88,26 @@ nnoremap <silent> <Leader>. :20winc ><CR>
 
 nmap <space> zz
 
+augroup diffcolors
+    autocmd!
+    autocmd Colorscheme * call s:SetDiffHighlights()
+augroup END
+
+function! s:SetDiffHighlights()
+    if &background == "dark"
+        highlight DiffAdd gui=bold guifg=NONE guibg=#2e4b2e
+        highlight DiffDelete gui=bold guifg=NONE guibg=#4c1e15
+        highlight DiffChange gui=bold guifg=NONE guibg=#45565c
+        "highlight DiffText gui=bold guifg=NONE guibg=#996d74
+        highlight DiffText gui=bold guifg=NONE guibg=#5a4548
+    else
+        highlight DiffAdd gui=bold guifg=NONE guibg=palegreen
+        highlight DiffDelete gui=bold guifg=NONE guibg=tomato
+        highlight DiffChange gui=bold guifg=NONE guibg=lightblue
+        highlight DiffText gui=bold guifg=NONE guibg=lightpink
+    endif
+endfunction
+
 set background=dark
 "colorscheme jellybeans
 "colorscheme everforest
@@ -133,3 +154,14 @@ map <C-S> :Ag<space>
 "autocmd BufWritePre *.js silent! execute ':Prettier'
 let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0
+
+"vimdiff config
+set diffopt+=algorithm:histogram
+set diffopt+=indent-heuristic
+set fillchars=diff:░
+
+let g:DiffChar = 0
+augroup diffchar_markdown
+    autocmd!
+    autocmd FileType markdown let t:DiffChar = 0
+augroup END
