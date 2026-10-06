@@ -20,10 +20,10 @@ Plug 'pangloss/vim-javascript'
 
 Plug 'godlygeek/tabular'
 "Plug 'preservim/vim-markdown'
-let g:markdown_folding = 1
+"let g:markdown_folding = 1
 Plug 'psf/black'
 
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+"Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'rickhowe/diffchar.vim'
 
 call plug#end()
@@ -154,6 +154,8 @@ map <C-S> :Ag<space>
 "autocmd BufWritePre *.js silent! execute ':Prettier'
 let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0
+
+command! Glow silent %w !glow -t -w $(tput cols) -
 
 "vimdiff config
 set diffopt+=algorithm:histogram
