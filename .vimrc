@@ -11,6 +11,8 @@ Plug 'prettier/vim-prettier', {
   \ 'for': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 
 Plug 'nanotech/jellybeans.vim'
+Plug 'sainnhe/everforest'
+Plug 'sainnhe/gruvbox-material'
 
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'leafgarland/typescript-vim'
@@ -24,6 +26,8 @@ Plug 'psf/black'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 call plug#end()
+
+set termguicolors
 
 syntax on
 filetype plugin indent on
@@ -82,7 +86,12 @@ nnoremap <silent> <Leader>, :20winc <<CR>
 nnoremap <silent> <Leader>. :20winc ><CR>
 
 nmap <space> zz
-colorscheme jellybeans
+
+set background=dark
+"colorscheme jellybeans
+"colorscheme everforest
+colorscheme gruvbox-material
+
 highlight LineNr ctermfg=79
 
 let &t_ti.="\e[1 q"
