@@ -41,6 +41,9 @@ set wildmenu
 
 set backspace=indent,eol,start
 
+"Wheel scrolling: n = normal mode only, so : and insert mode leave the pointer to the terminal
+set mouse=n
+
 "Tab Navigation
 nnoremap tl  gt
 nnoremap th  gT
