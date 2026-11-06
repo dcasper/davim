@@ -24,7 +24,7 @@ Personal dotfiles repo. No application source code. Config files for vim, zsh, t
 
 | File | Tool | Notes |
 |---|---|---|
-| `.vimrc` | Vim/Neovim | vim-plug, prettier autoformat on, jellybeans colorscheme, `jk` escapes insert mode |
+| `.vimrc` | Vim/Neovim | vim-plug, vim-lsp + fzf, gruvbox-material colorscheme, `jk` escapes insert mode |
 | `.zshrc` | Zsh | oh-my-zsh, rbenv, nvm, pyenv, conda, mise, go, opencode |
 | `.zshenv` | Zsh | RVM only (loaded early) |
 | `.tmux.conf` | Tmux | vi mode keys, Ctrl-H/J/K/L pane switching, status hides on narrow windows (<90 cols) |
@@ -38,6 +38,9 @@ Personal dotfiles repo. No application source code. Config files for vim, zsh, t
 - 2-space indent, expandtab
 - `jk` exits insert mode
 - `<Leader>=` / `<Leader>-` resize windows vertically, `<Leader>,` / `<Leader>.` horizontally
-- `,e` / `,t` / `,s` open/tabedit/split with file picker in current directory
-- `Ctrl-S` triggers `Ag` (the_silver_searcher)
-- Black and Prettier are configured but auto-format on save is commented out; `g:prettier#autoformat = 1` is set
+- Folding is syntax-based and starts expanded (`foldlevel=99`); `z1`–`z6` collapse to fold level N; fold text shows the fold's first line and line count
+- LSP via vim-lsp, registered for JS/TS only when `typescript-language-server` is on PATH: `gd` definition, `gD` declaration, `gr` references, `gi` implementation, `gy`/`gY` type definition, `K` hover, `<Leader>rn` rename, `<Leader>ca` code action, `[d` / `]d` prev/next diagnostic. Diagnostics echo on the cursor line (no virtual text) and are disabled in diff buffers; the sign column is hidden
+- fzf replaces CtrlP: `<C-P>` opens `:GitFiles`, `<C-L>` opens `:History`, both in a floating window
+- Relative line numbers hide when the window is narrower than 90 columns
+- After a buffer loads, file details echo on the command line after a short delay (`g:file_info_delay` ms, default 75; negative disables)
+- Prettier autoformats on save for its filetypes (`g:prettier#autoformat = 1`); `:Black` formats Python manually
