@@ -28,6 +28,9 @@ Plug 'psf/black'
 "Plug 'rickhowe/diffchar.vim'
 Plug 'prabirshrestha/vim-lsp'
 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 call plug#end()
 
 let g:lsp_diagnostics_virtual_text_enabled = 0
@@ -209,9 +212,6 @@ let g:rails_projections = {
       \   "command": "jaction",
       \ }}
 
-let g:ctrlp_cmd = 'CtrlPMixed'
-let g:ctrlp_custom_ignore = 'node_modules'
-
 map <C-S> :Ag<space>
 
 "autocmd BufWritePre *.py silent! execute ':Black'
@@ -225,3 +225,13 @@ command! Glow silent %w !glow -t -w $(tput cols) -
 set diffopt+=algorithm:histogram
 set diffopt+=indent-heuristic
 set fillchars=diff:░
+
+nnoremap <C-P> :GitFiles<CR>
+nnoremap <C-L> :History<CR>
+
+let g:fzf_layout = {
+      \ 'window': {
+      \   'width': 0.9,
+      \   'height': 0.7,
+      \ }
+      \ }
