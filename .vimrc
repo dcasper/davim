@@ -24,7 +24,7 @@ Plug 'godlygeek/tabular'
 Plug 'psf/black'
 
 "Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-Plug 'rickhowe/diffchar.vim'
+"Plug 'rickhowe/diffchar.vim'
 
 call plug#end()
 
@@ -38,7 +38,30 @@ set smartcase
 set hlsearch
 
 set foldmethod=syntax
-set nofoldenable
+set foldlevel=99
+
+function! MyFoldText()
+  let first = substitute(getline(v:foldstart), '\s\+$', '', '')
+  let count = v:foldend - v:foldstart + 1
+  return printf('%s  ▸ %d lines',
+        \ substitute(getline(v:foldstart), '\s\+$', '', ''), 
+        \ v:foldend - v:foldstart + 1
+        \ )
+endfunction
+
+set foldtext=MyFoldText()
+
+function! SetFoldLevel(level)
+  normal! zM
+  execute 'setlocal foldlevel=' . a:level
+endfunction
+
+nnoremap z1 :call SetFoldLevel(1)<CR>
+nnoremap z2 :call SetFoldLevel(2)<CR>
+nnoremap z3 :call SetFoldLevel(3)<CR>
+nnoremap z4 :call SetFoldLevel(4)<CR>
+nnoremap z5 :call SetFoldLevel(5)<CR>
+nnoremap z6 :call SetFoldLevel(6)<CR>
 
 set nu
 set wildmode=longest,list,full
@@ -161,9 +184,3 @@ command! Glow silent %w !glow -t -w $(tput cols) -
 set diffopt+=algorithm:histogram
 set diffopt+=indent-heuristic
 set fillchars=diff:░
-
-let g:DiffChar = 0
-augroup diffchar_markdown
-    autocmd!
-    autocmd FileType markdown let t:DiffChar = 0
-augroup END
