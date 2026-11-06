@@ -187,35 +187,6 @@ let &t_SI.="\e[5 q"
 let &t_EI.="\e[1 q"
 let &t_te.="\e[0 q"
 
-map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
-map ,t :tabe <C-R>=expand("%:p:h") . "/" <CR>
-map ,s :split <C-R>=expand("%:p:h") . "/" <CR>
-
-let g:jsx_ext_required = 0
-
-let g:rails_projections = {
-      \ "app/services/*.rb": {
-      \   "command": "services",
-      \   "test": "spec/services/{}_spec.rb"
-      \ },
-      \ "app/drivers/*_driver.rb": {
-      \   "command": "drivers",
-      \   "test": "spec/drivers/{}_spec.rb"
-      \ },
-      \ "app/assets/javascripts/components/*.jsx": {
-      \   "command": "jcomp",
-      \ },
-      \ "app/assets/javascripts/stores/*_store.jsx": {
-      \   "command": "jstore",
-      \ },
-      \ "app/assets/javascripts/actions/*_actions.jsx": {
-      \   "command": "jaction",
-      \ }}
-
-map <C-S> :Ag<space>
-
-"autocmd BufWritePre *.py silent! execute ':Black'
-"autocmd BufWritePre *.js silent! execute ':Prettier'
 let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0
 
