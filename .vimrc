@@ -197,6 +197,24 @@ set diffopt+=algorithm:histogram
 set diffopt+=indent-heuristic
 set fillchars=diff:░
 
+set relativenumber
+
+"mobile settings
+function! UpdateLineNumbers()
+  if &columns < 90
+    set nonumber
+    set norelativenumber
+  else
+    set number
+    set relativenumber
+  endif
+endfunction
+
+augroup ResponsiveLineNumbers
+  autocmd!
+  autocmd VimEnter,VimResized * call UpdateLineNumbers()
+augroup END
+
 nnoremap <C-P> :GitFiles<CR>
 nnoremap <C-L> :History<CR>
 
