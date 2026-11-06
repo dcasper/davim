@@ -1,4 +1,5 @@
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
@@ -25,8 +26,64 @@ Plug 'psf/black'
 
 "Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 "Plug 'rickhowe/diffchar.vim'
+Plug 'prabirshrestha/vim-lsp'
 
 call plug#end()
+
+let g:lsp_diagnostics_virtual_text_enabled = 0
+let g:lsp_diagnostics_echo_cursor = 1
+
+if executable('typescript-language-server')
+  augroup LspTypeScript
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+          \ 'name': 'typescript-language-server',
+          \ 'cmd': {server_info -> ['typescript-language-server', '--stdio']},
+          \ 'allowlist': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'],
+          \ })
+  augroup END
+endif
+
+augroup LspConfig
+  autocmd!
+  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
+augroup LspDiff
+  autocmd!
+  autocmd BufEnter,WinEnter * if &diff | call lsp#disable_diagnostics_for_buffer(bufnr('%')) | endif
+augroup END
+
+set signcolumn=no
+
+function! s:on_lsp_buffer_enabled() abort
+
+  setlocal omnifunc=lsp#complete
+
+  set completeopt=menu,menuone,noinsert
+
+  "if !&diff
+  "  setlocal foldmethod=expr
+  "  setlocal foldexpr=lsp#ui#vim#folding#foldexpr()
+  "  setlocal foldtext=lsp#ui#vim#folding#foldtext()
+  "  setlocal foldlevel=99
+  "endif
+
+  nmap <buffer> gd <plug>(lsp-definition)
+  nmap <buffer> gD <plug>(lsp-declaration)
+  nmap <buffer> gr <plug>(lsp-references)
+  nmap <buffer> gi <plug>(lsp-implementation)
+  nmap <buffer> gy <plug>(lsp-peek-type-definition)
+  nmap <buffer> gY <plug>(lsp-type-definition)
+
+  nmap <buffer> K <plug>(lsp-hover)
+
+  nmap <buffer> <leader>rn <plug>(lsp-rename)
+  nmap <buffer> <leader>ca <plug>(lsp-code-action)
+
+  nmap <buffer> [d <plug>(lsp-previous-diagnostic)
+  nmap <buffer> ]d <plug>(lsp-next-diagnostic)
+endfunction
 
 set termguicolors
 
@@ -75,22 +132,6 @@ set mouse=n
 "Tab Navigation
 nnoremap tl  gt
 nnoremap th  gT
-
-"Random test comment
-set omnifunc=syntaxcomplete#Complete
-
-"Fancy IDE style completion options
-set completeopt=longest,menuone
-inoremap <expr> <CR> pumvisible() ? "\<C-n>\<C-y>" : "\<CR>" 
-"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-"inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-"\ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-"inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
-"\ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
-set omnifunc=rubycomplete#Complete
-let g:rubycomplete_buffer_loading=1
-let g:rubycomplete_classes_in_global=1
 
 inoremap <C-@> <C-x><C-o>
 
