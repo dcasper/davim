@@ -224,3 +224,50 @@ let g:fzf_layout = {
       \   'height': 0.7,
       \ }
       \ }
+
+" Echo file details shortly after a file is loaded or shown in the window.
+" BufReadPost/BufNewFile cover reads from disk. BufWinEnter also catches moves
+" that only re-display an already loaded buffer: :b, <C-O>, <C-I>, <C-^> and
+" vim-lsp jumps, which use :b when the target buffer already exists.
+" The delay lets vim finish loading and redraw, and lets vim-lsp print its own
+" "Retrieved definition" first so the file details are what stays on screen.
+" Tune the delay with g:file_info_delay (milliseconds); set it negative to disable.
+if !exists('g:file_info_delay')
+  let g:file_info_delay = 75
+endif
+
+let s:file_info_timer = -1
+
+function! s:EchoFileInfo(bufnr, timer) abort
+  let s:file_info_timer = -1
+  " Only report for the buffer that is still on screen.
+  if a:bufnr != bufnr('%')
+    return
+  endif
+  " Skip special buffers: help, quickfix, preview, terminal, netrw.
+  if getbufvar(a:bufnr, '&buftype') !=# ''
+    return
+  endif
+  " Do not interrupt typing.
+  if mode(1) !=# 'n'
+    return
+  endif
+  file
+endfunction
+
+function! s:ScheduleFileInfo() abort
+  if g:file_info_delay < 0
+    return
+  endif
+  " Reading a file fires BufReadPost and BufWinEnter one after the other, so
+  " keep only one pending timer and treat that pair as a single echo.
+  if s:file_info_timer != -1
+    call timer_stop(s:file_info_timer)
+  endif
+  let s:file_info_timer = timer_start(g:file_info_delay, function('s:EchoFileInfo', [str2nr(expand('<abuf>'))]))
+endfunction
+
+augroup FileInfoOnLoad
+  autocmd!
+  autocmd BufWinEnter,BufReadPost,BufNewFile * call s:ScheduleFileInfo()
+augroup END
